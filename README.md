@@ -1,4 +1,4 @@
-
+# Hostify
 
 ![Icon](./doc/icon.png) 
 
@@ -33,8 +33,24 @@ Import module with:
 const hostify = require('hostify').operations
 ```
 
-Operations:
+### Operations
 
-| Function | Description | Arguments | Output | Example |
-|:-- |:-- |:-- |:-- |:-- |
-| `hostify.list` | Show a list of entries | `filterIpFn: (val) => boolean`<br /><br />`filterHostFn: (val) => boolean` | `<Array>{ ip: string, host: string }` | `const entries = hostify.list({ filterIpFn: (val) => return val.endsWith('.255') })`
+#### `hostify.list(options): <Array>{ ip: string, host: string }`
+
+Show a list of entries
+
+| Option | Model |
+|:-- |:-- |
+| `filterIpFn` | `filterIpFn: (val: string) => boolean` |
+| `filterHostFn` | `filterHostFn: (val: string) => boolean` |
+
+```javascript
+const options = {
+  filterIpFn: (val) => val.endsWith('.255'),       // Filter IPs
+  filterHostFn: (val) => val.contains('tracking')  // Filter Hosts
+}
+
+const entries = hostify.list(options)
+
+entries.forEach(entry => console.log(entry.ip, entry.host))
+```
