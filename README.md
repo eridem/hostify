@@ -1,4 +1,6 @@
-# Hostify
+
+
+![Icon](./doc/icon.png) 
 
 *Hostify* is a module that help us to work with the `hosts` file of our operating system.
 
