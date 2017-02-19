@@ -1,0 +1,48 @@
+{
+  "name": "hostify",
+  "version": "0.1.0",
+  "description": "CLI tool and utils for hosts files: /etc/hosts and C:\\Windows\\System32\\drivers\\etc\\hosts",
+  "main": "index.js",
+  "bin": {
+    "hostify": "bin/cmd.js"
+  },
+  "scripts": {
+    "standard": "standard",
+    "pretest": "standard --fix",
+    "test": "exit 0"
+  },
+  "keywords": [
+    "hosts",
+    "host",
+    "domain",
+    "dns",
+    "ip"
+  ],
+  "author": {
+    "name": "Miguel Ángel Domínguez Coloma",
+    "email": "m@eridem.net",
+    "url": "http://eridem.net"
+  },
+  "license": "MIT",
+  "homepage": "http://eridem.net/hostify",
+  "bugs": {
+    "url": "https://github.com/eridem/hostify/issues",
+    "email": "m@eridem.net"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:eridem/hostify.git"
+  },
+  "dependencies": {
+    "camelcase": "^4.0.0",
+    "chalk": "^1.1.3",
+    "require-dir": "^0.3.1",
+    "yargs": "^6.6.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0",
+    "nyc": "^10.0.0",
+    "standard": "^8.6.0"
+  }
+}
