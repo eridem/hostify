@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+  - '6'
+install:
+  - npm install
+deploy:
+  provider: npm
+  email: m@eridem.net
+  api_key:
+    secure: Arcq+byK1djOhi0TCoZXZHD2gTUhekZVCuPgAVNRm1Bwj2Gc+lNfDKWb1TiET8MqR/GDepngBrBKftpNALAKTSHci4unm2EVHJSQhB/ZNQ+z6leQ5nhRJYij0I/DNPH+PKFuCdckT1GQVCxeDXAnPlSwdWCrNdu5+sqE2oUPbuG9mGAPTufhMYP++D67tutM4WG97Doz3ekqDsKXo1SRdzLD7QIKgSEWJb1UBkSarHshmEGYBxRb8veVbV2Mfdet/h/QnO69TkrIg1XGeCQe5FWxxrcoUJXSF+F/1a6/r9P/Ag4u8jbwIE6R3H8a7/snDODQnMbSTG+onypKjyNEys7Z6Vd3Xpv+1rWuYeMwAj8ZG7azMICUf6ovVbP1Oqyr60KTUbdrqn6pWX0hKhiVsC3r6oQ0Vi0ACMAel4OITyCYyAQyGbPbpVi2yqUcRY+HfbkEGz8DPwStjIxR/RxCrl+0DkoGpWyWeWih5m8lUJ5gMwN6QkoBV7MZoSy7pwH5+jTeTXif8FLkn69fZZ+26DRWWKYl/OrPq+1zU3WNkoIdG3/HkKcFnSKAh0cVLs43H9XFsfbY64BbD0tWKpetoJkjViu/caPLPT01FLSZegedENc+ifTYodW7z55Zm+2Ra7J2J/JoSaytTmQC5XCujuchSrwS3gdAn69DyBMMAnQ=
+  on:
+    tags: true
+    repo: eridem/hostify
