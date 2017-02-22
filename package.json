@@ -9,7 +9,10 @@
   "scripts": {
     "standard": "standard",
     "pretest": "standard --fix",
-    "test": "exit 0"
+    "test": "npm run test-coverage",
+    "test-coverage": "nyc --cache mocha --timeout=8000 --check-leaks \"test/**/*.js\"",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "prepublish": "npm test"
   },
   "keywords": [
     "hosts",
@@ -47,6 +50,7 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "coveralls": "^2.11.16",
     "ghooks": "^2.0.0",
     "mocha": "^3.2.0",
     "nyc": "^10.0.0",

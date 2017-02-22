@@ -1,3 +1,17 @@
+[![Build Status][travis-image]][travis-url]
+[![Coverage Status][coveralls-image]][coveralls-url]
+[![NPM version][npm-image]][npm-url]
+[![js-standard-style][standard-image]][standard-url]
+
+[travis-url]: https://travis-ci.org/eridem/hostify
+[travis-image]: https://img.shields.io/travis/eridem/hostify/master.svg
+[standard-url]: http://standardjs.com/
+[standard-image]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg
+[npm-url]: https://www.npmjs.com/package/hostify
+[npm-image]: https://img.shields.io/npm/v/hostify.svg
+[coveralls-url]: https://coveralls.io/github/eridem/hostify?branch=master
+[coveralls-image]: https://coveralls.io/repos/github/eridem/hostify/badge.svg?branch=master
+
 # Hostify
 
 ![Icon](./doc/icon.png) 
