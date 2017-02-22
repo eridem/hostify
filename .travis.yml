@@ -3,6 +3,7 @@ node_js:
 - '6'
 install:
 - npm install
+after_success: npm run coveralls
 deploy:
   provider: npm
   email: m@eridem.net

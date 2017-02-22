@@ -14,7 +14,7 @@
 
 # Hostify
 
-![Icon](./doc/icon.png) 
+![Icon](https://github.com/eridem/hostify/raw/master/doc/icon.png) 
 
 *Hostify* is a module that help us to work with the `hosts` file of our operating system.
 
