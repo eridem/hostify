@@ -19,16 +19,16 @@ describe(file, function () {
   describe('using .list()', function () {
     it('should return parsed entries without filters', function () {
       const content = `
-        0.0.0.0 localhost\n
-        0.0.0.0 local\n
-        1.2.3.4 another#host\n
-        5.6.7.8 #invalid.host\n
-        #1.1.1.1 invalid.me\n
-        abc.def.ghi.jkl invalid.local\n
-        # commented line\n
-        #commented line\n
-        \n
-        #1.1.1.1 hostify\n
+        0.0.0.0 localhost
+        0.0.0.0 local
+        1.2.3.4 another#host
+        5.6.7.8 #invalid.host
+        #1.1.1.1 invalid.me
+        abc.def.ghi.jkl invalid.local
+        # commented line
+        #commented line
+        
+        #1.1.1.1 hostify
         255.255.255.255 broadcast #broadcast`
 
       const result = [
@@ -46,10 +46,10 @@ describe(file, function () {
 
     it('should return parsed entries with IP filters', function () {
       const content = `
-        0.0.0.0 one.local\n
-        0.0.0.0 two.local\n
-        0.0.1.0 three.local\n
-        0.1.0.0 four.local\n
+        0.0.0.0 one.local
+        0.0.0.0 two.local
+        0.0.1.0 three.local
+        0.1.0.0 four.local
       `
 
       const osFileResolver = osFileResolverMock(content)
@@ -66,10 +66,10 @@ describe(file, function () {
 
     it('should return parsed entries with Hosts filters', function () {
       const content = `
-        0.0.0.0 one.local\n
-        0.0.0.0 two.local\n
-        0.0.1.0 three.local\n
-        0.1.0.0 four.local\n
+        0.0.0.0 one.local
+        0.0.0.0 two.local
+        0.0.1.0 three.local
+        0.1.0.0 four.local
       `
 
       const osFileResolver = osFileResolverMock(content)
@@ -85,10 +85,10 @@ describe(file, function () {
 
     it('should return parsed entries with IP and Hosts filters', function () {
       const content = `
-        0.0.0.0 one.local\n
-        0.0.0.0 two.local\n
-        0.0.1.0 three.local\n
-        0.1.0.0 four.local\n
+        0.0.0.0 one.local
+        0.0.0.0 two.local
+        0.0.1.0 three.local
+        0.1.0.0 four.local
       `
 
       const osFileResolver = osFileResolverMock(content)
