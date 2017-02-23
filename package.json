@@ -1,6 +1,6 @@
 {
   "name": "hostify",
-  "version": "0.2.0-beta.1",
+  "version": "0.2.0-beta.2",
   "description": "CLI tool and utils for hosts files: /etc/hosts and C:\\Windows\\System32\\drivers\\etc\\hosts",
   "main": "index.js",
   "bin": {
