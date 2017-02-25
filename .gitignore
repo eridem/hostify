@@ -38,3 +38,6 @@ node_modules
 
 # OS
 .DS_Store
+
+# Local tests
+test/hosts-file-*.txt

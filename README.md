@@ -20,7 +20,7 @@
 
 It supports both a CLI tool and a module you can use in your own project.
 
-> *NOTE: library in progress. Future releases will contain more operations.*
+> *NOTE: library in progress. Please use with caution and report any issue on here: <https://github.com/eridem/hostify/issues>*
 
 ## CLI tool operations
 
@@ -36,11 +36,12 @@ hostify [COMMAND] --help
 | Command | Description | Example
 |:-- |:-- |:-- |
 | `list` | Show all entries in the host file | `hostify list` |
-| `list --ipFilterExp [REGEXP]` | Show entries which IPs match with RegExp | `hostify list --ipFilterExp ".*\.255"` |
-| `list --hostFilterExp [REGEXP]` | Show entries which Host match with RegExp | `hostify list --hostFilterExp ".*tracking.*"` |
-| `delete --ipFilterExp [REGEXP]` | Delete entries which IPs match with RegExp | `hostify delete --ipFilterExp "127.0.0.\d+"` |
-| `delete --hostFilterExp [REGEXP]` | Delete entries which Host match with RegExp | `hostify delete --hostFilterExp ".*project\.local"` |
-| `delete --what-if` | Combined with other options, show results of the `delete` operation without perform it | `hostify delete --what-if --ipFilterExp "127.0.0.0"` |
+| `list --ipFilterExp "REGEXP"` | Show entries which IPs match with RegExp | `hostify list --ipFilterExp ".*\.255"` |
+| `list --hostFilterExp "REGEXP"` | Show entries which Host match with RegExp | `hostify list --hostFilterExp ".*tracking.*"` |
+| `list --ipFilterExp "REGEXP" --hostFilterExp "REGEXP"` | Show entries which IP and Host match with both each RegExp | `hostify list --ipFilterExp "0.0.0.0" --hostFilterExp ".*tracking.*"` |
+| `add --ip "IP" --host "HOST" [--comment "COMMENT"]` | Add a single entry to the `hosts` file | `hostify add --ip "0.0.0.0" --host "tracking.localhost" --comment "Tracking entry"` |
+| `delete --ipFilterExp "REGEXP" [--what-if]` | Delete entries which IPs match with RegExp | `hostify delete --ipFilterExp "127.0.0.\d+"` |
+| `delete --hostFilterExp "REGEXP" [--what-if]` | Delete entries which Host match with RegExp | `hostify delete --hostFilterExp ".*project\.local"` |
 
 ### Special options
 
@@ -56,46 +57,83 @@ Import module with:
 const hostify = require('hostify').operations
 ```
 
-### Operations
+### List
 
-#### `hostify.list(options): <Array>{ ip: string, host: string }`
+```typescript
+hostify.list(options): <Array>{ ip: string, host: string }`
+```
 
 Show entries in the host file.
 
-| Option | Model |
-|:-- |:-- |
-| `filterIpFn` | `filterIpFn: (val: string) => boolean` |
-| `filterHostFn` | `filterHostFn: (val: string) => boolean` |
+| Option | Model | Default |
+|:-- |:-- |:-- |
+| `filterIpFn` | `filterIpFn: (val: string) => boolean` | `(v) => true` |
+| `filterHostFn` | `filterHostFn: (val: string) => boolean` | `(v) => true` |
+| `path` | `path: string` | OS hosts path |
 
 ```javascript
 const options = {
   filterIpFn: (val) => val.endsWith('.255'),       // Filter IPs
   filterHostFn: (val) => val.contains('tracking')  // Filter Hosts
+  // path: './my-hosts-file.txt'                   // Hosts file
 }
 
 const entries = hostify.list(options)
 
-entries.forEach(entry => console.log(entry.ip, entry.host))
+entries.forEach(entry => console.log(entry.ip, entry.host, entry.comment))
 ```
 
-#### `hostify.delete(options): <Array>{ ip: string, host: string }`
+### Add
+
+```typescript
+hostify.add(options): <Array>{ ip: string, host: string }
+```
+
+Add entries in the host file.
+
+| Option | Model | Default |
+|:-- |:-- |:-- |
+| `entries` | `<Array>{ ip: string, host: string, comment: string }` | `null` |
+| `path` | `path: string` | OS hosts path |
+
+```javascript
+const options = {
+  entries: [                                       // Entries to add
+    { ip: '0.0.0.0', host: 'ad.localhost' },
+    { ip: '0.0.0.0', host: 'tracking.localhost', comment: 'Track entry' }
+  ],
+  // path: './my-hosts-file.txt'                   // Hosts file
+}
+
+const entries = hostify.add(options)
+
+entries.forEach(entry => console.log(entry.ip, entry.host, entry.comment))
+```
+
+### Delete
+
+```typescript
+hostify.delete(options): <Array>{ ip: string, host: string }
+```
 
 Delete entries in the host file.
 
-| Option | Model |
-|:-- |:-- |
-| `filterIpFn` | `filterIpFn: (val: string) => boolean` |
-| `filterHostFn` | `filterHostFn: (val: string) => boolean` |
-| `whatIf` | `whatIf: boolean` |
+| Option | Model | Default |
+|:-- |:-- |:-- |
+| `filterIpFn` | `filterIpFn: (val: string) => boolean` | `(v) => true` |
+| `filterHostFn` | `filterHostFn: (val: string) => boolean` | `(v) => true` |
+| `whatIf` | `whatIf: boolean` | `false` |
+| `path` | `path: string` | OS hosts path |
 
 ```javascript
 const options = {
   filterIpFn: (val) => val.endsWith('.255'),       // Filter IPs
   filterHostFn: (val) => val.contains('tracking'), // Filter Hosts
   whatIf: true                                     // Do not execute delete operation, only obtain results
+  // path: './my-hosts-file.txt'                   // Hosts file
 }
 
 const entries = hostify.delete(options)
 
-entries.forEach(entry => console.log(entry.ip, entry.host))
+entries.forEach(entry => console.log(entry.ip, entry.host, entry.comment))
 ```
